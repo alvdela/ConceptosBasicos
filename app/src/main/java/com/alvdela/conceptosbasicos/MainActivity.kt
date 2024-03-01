@@ -13,17 +13,44 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*
-        val fecha = "05/06/2001"
+
+        val fecha = "05/03/2001"
         var nombre: String = "Alvaro"
-        var vip: Boolean = false
+        var vip: Boolean = true
 
         var saludo = "Hola $nombre"
 
-        println(saludo)
-        //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
-        */
+        val mes = fecha.subSequence(3,5).toString().toInt()
+        when(mes){
+            12,1,2 -> println("En Invierno no hay ofertas")
+            3,4,5 -> println("En Primavera hay ofertas de inversión")
+            6,7,8 -> println("En Verano regalamos una pelota de playa")
+            9,10,11 -> println("En Otoño hay ofertas de prestamos")
+            else -> println("Fecha introducida incorrectamente")
+        }
 
+        //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
+
+        if(vip){
+            saludo += ", eres VIP"
+        }else{
+            saludo += ", paga la cuota"
+        }
+        println(saludo)
+
+        var pin:Int = 1234
+        var intentos:Int = 0
+
+        var claveIngresada:Int = 1230
+
+        do {
+            println("Ingrese el Pin: ")
+            println("Clave ingresada: ${claveIngresada++}")
+            intentos++
+        }while (intentos < 3 && claveIngresada!=pin)
+        if (intentos == 3) println("Tarjeta bloqueada")
+
+        /*
         val a:Int = 5 + 5 //10
         val b:Int = 10 - 2 //8
         val c:Int = 3 * 4 //12
@@ -51,6 +78,7 @@ class MainActivity : ComponentActivity() {
         println(dPostDecremento)
         println(dPostDecremento--)
         println(dPostDecremento)
+        */
 
     }
 }
