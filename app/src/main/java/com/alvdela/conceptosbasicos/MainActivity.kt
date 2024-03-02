@@ -22,12 +22,25 @@ class MainActivity : ComponentActivity() {
 
         var saludo = "Hola $nombre"
 
-        mostrarSaldo()
-        ingresarDinero(10.50F)
-        retirarDinero(5F)
-        retirarDinero(50F)
-        retirarDinero(50F)
+        //Arrays
+        var recibos: Array<String> = arrayOf("Luz","Gas","Agua")
+        recibos.set(2,"Internet")
+        //recibos[2] = "Internet"
+        //recorrerArray(recibos)
 
+        //Matriz
+        var matriz = arrayOf(
+            intArrayOf(1,2,3),
+            intArrayOf(4,5,6),
+            intArrayOf(7,8,9)
+        )
+
+        for (i in (0 until matriz.size)){
+            println()
+            for (j in (0 until matriz[i].size)){
+                println("Posición[$i][$j]: ${matriz[i][j]}")
+            }
+        }
         /*ESTRUCTURAS DE CONTROL DEL FLUJO
 
         val mes = fecha.subSequence(3,5).toString().toInt()
@@ -116,5 +129,19 @@ class MainActivity : ComponentActivity() {
             return false
         }
         return true
+    }
+
+    fun recorrerArray(recibos:Array<String>){
+        for (i in recibos){
+            println(i)
+        }
+
+        for (i in recibos.indices){
+            println("Segundo ejemplo: ${recibos.get(i)}")
+        }
+
+        for (i in 0 .. recibos.size - 1){
+            println("${i+1}: ${recibos.get(i)}")
+        }
     }
 }
