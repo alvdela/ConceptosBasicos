@@ -10,15 +10,25 @@ class MainActivity : ComponentActivity() {
         //Ambido distinto a la creación de la ventana
         const val moneda = "EUR"
     }
+    var saldo:Float = 55.20F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val fecha = "05/03/2001"
+        //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
         var nombre: String = "Alvaro"
         var vip: Boolean = true
 
         var saludo = "Hola $nombre"
+
+        mostrarSaldo()
+        ingresarDinero(10.50F)
+        retirarDinero(5F)
+        retirarDinero(50F)
+        retirarDinero(50F)
+
+        /*ESTRUCTURAS DE CONTROL DEL FLUJO
 
         val mes = fecha.subSequence(3,5).toString().toInt()
         when(mes){
@@ -28,8 +38,6 @@ class MainActivity : ComponentActivity() {
             9,10,11 -> println("En Otoño hay ofertas de prestamos")
             else -> println("Fecha introducida incorrectamente")
         }
-
-        //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
 
         if(vip){
             saludo += ", eres VIP"
@@ -49,8 +57,8 @@ class MainActivity : ComponentActivity() {
             intentos++
         }while (intentos < 3 && claveIngresada!=pin)
         if (intentos == 3) println("Tarjeta bloqueada")
-
-        /*
+        */
+        /* OPERADORES ARITMETICOS
         val a:Int = 5 + 5 //10
         val b:Int = 10 - 2 //8
         val c:Int = 3 * 4 //12
@@ -80,5 +88,33 @@ class MainActivity : ComponentActivity() {
         println(dPostDecremento)
         */
 
+    }
+
+    fun mostrarSaldo(){
+        println("Tienes $saldo $moneda")
+    }
+
+    fun ingresarDinero(cantidad:Float){
+        saldo += cantidad
+        println("Se ha ingresado: $cantidad $moneda")
+        mostrarSaldo()
+    }
+
+    fun retirarDinero(cantidad:Float){
+        if(verificarCantidad(cantidad)){
+            saldo -= cantidad
+            println("Se ha retirado: $cantidad $moneda")
+            mostrarSaldo()
+        }else{
+            println("Cantidad mayor al saldo, imposible retirar el dinero")
+        }
+
+    }
+
+    fun verificarCantidad(cantidad: Float): Boolean{
+        if(cantidad > saldo){
+            return false
+        }
+        return true
     }
 }
