@@ -7,27 +7,108 @@ import androidx.activity.ComponentActivity
 class MainActivity : ComponentActivity() {
 
     companion object{
-        //Ambido distinto a la creación de la ventana
+        //Ambito distinto a la creación de la ventana
         const val moneda = "EUR"
     }
-    var saldo:Float = 55.20F
+    var saldo:Float = 505.20F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fecha = "05/03/2001"
-        //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
-        var nombre: String = "Alvaro"
-        var vip: Boolean = true
 
-        var saludo = "Hola $nombre"
 
+        var menu: MutableMap<String, Double> = mutableMapOf<String, Double>()
+        menu.put("Onion Soup", 10.17)
+        menu.put("Salad", 15.85)
+        menu.put("Pizza", 14.64)
+        menu.put("Rice", 20.99)
+        menu.put("Cake", 33.9)
+
+        for (x in menu) {
+            println("Plato: ${x.key} - Precio$${x.value}")
+        }
+
+        var menuExtra= arrayOf(
+            arrayOf("guacamole",45.5f, arrayOf("aguacate","cebolla","chile","jitomate")),
+            arrayOf("enchiladas",90.0f, arrayOf("tortillas","frijoles","queso","chile","crema","cebolla","guacamole")),
+            arrayOf("torta",50.0f, arrayOf("bolillo","guizado","salsa")),
+            arrayOf("tacos rojos", 75.5f,arrayOf("tortilla","chile","queso","papas","zanahoria","crema","salsa"))
+        )
+
+        println("menu con precios")
+        for(i in (0 until menuExtra.size)){
+            for (j in (0 until menuExtra[i].size)){
+                println()
+                when(j){
+                    0 ->{    print("$i. ${menuExtra[i][j]}")}
+                    1->{     print(" $${menuExtra[i][j]}")}
+                    2->{     print(" Incredientes : ")
+                        var ingredientes:Array<String> = menuExtra[i][j] as Array<String>
+                        for(i in ingredientes){
+                            print("$i - " )
+                        }
+                    }
+                }
+            }
+
+            /*
+            //ConceptosBasicos
+            val fecha = "05/03/2001"
+            //fecha = "03/02/1992" -> Los valores (val) no pueden modificarse
+            var nombre: String = "Alvaro"
+
+            var mapa: Map<Int,String> = mapOf(
+                1 to "España",
+                2 to "Mexico",
+                3 to "Colombia"
+            )
+            println(mapa)
+            var inversiones = mutableMapOf<String, Float>()
+            inversiones.put("Coca-cola", 50f)
+            println(inversiones)
+
+
+            //LISTAS
+            var divisas: List<String> = listOf("USD", "EUR", "YEN")
+            println(divisas)
+            var bolsa: MutableList<String> = mutableListOf("Coca-cola", "Adidas", "Amazon", "Pfizer")
+
+            val cantidadAInvertir: Float = 90f
+            var empresa: String? = "a"
+            var index: Int = 0
+
+            while(saldo >= cantidadAInvertir && empresa != null){
+                empresa = bolsa.elementAtOrNull(index)
+                if (empresa != null){
+                    retirarDinero(cantidadAInvertir)
+                    inversiones.put(empresa, cantidadAInvertir)
+                }
+                index++
+            }
+            println(inversiones)
+            */
+        /*
+        //SET
+        var clientesVip: Set<Int> = setOf(1234,5678,1235)
+        var setMezclado = setOf(2, 3.45, "casa")
+
+        var clientes: MutableSet<Int> = mutableSetOf(1234,5465,9875)
+        println("Clientes: $clientes")
+        clientes.add(4567)
+        println("Clientes: $clientes")
+        clientes.remove(1234)
+        println("Clientes: $clientes")
+        clientes.clear()
+        println("Clientes: $clientes")
+        */
+        /*
         //Arrays
         var recibos: Array<String> = arrayOf("Luz","Gas","Agua")
         recibos.set(2,"Internet")
         //recibos[2] = "Internet"
         //recorrerArray(recibos)
-
+        */
+        /*
         //Matriz
         var matriz = arrayOf(
             intArrayOf(1,2,3),
@@ -41,6 +122,7 @@ class MainActivity : ComponentActivity() {
                 println("Posición[$i][$j]: ${matriz[i][j]}")
             }
         }
+        */
         /*ESTRUCTURAS DE CONTROL DEL FLUJO
 
         val mes = fecha.subSequence(3,5).toString().toInt()
